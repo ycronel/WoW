@@ -10,8 +10,11 @@ public class Combat {
 	 * @param secFighter
 	 */
 	public static void fight(Personnage firstFighter, Personnage secFighter) {
-	
+		//ETAT DES LIEUX DU JEU
+		System.out.println("Start game");
 		System.out.println(firstFighter.getName() + "(" + firstFighter.getHP()+ " PV)" + " VS " + secFighter.getName() + "(" + secFighter.getHP() + " PV)." );
+		System.out.println(firstFighter.getName() + " : " + firstFighter.battleCry());
+		System.out.println(secFighter.getName() + " : " + secFighter.battleCry() + "\n");
 		
 		
 		// TANT QUE LES POINTS DE VIE DE CHAQUE COMBATTANT EST SUPÉRIEUR À 0
@@ -27,10 +30,17 @@ public class Combat {
 			}
 			
 			System.out.println(firstFighter.getName() + " a " + firstFighter.getHP() + " PV."); 
-			System.out.println(secFighter.getName() + " a " + secFighter.getHP() + " PV."); 
+			System.out.println(secFighter.getName() + " a " + secFighter.getHP() + " PV. \n"); 
 			
 			tour++;
 		}	
+		if (firstFighter.getHP() == 0) {
+			System.out.println(firstFighter.getName() + " a perdu... ");
+			System.out.println(secFighter.getName() + " remporte le combat ! ");
+		} else {
+			System.out.println(secFighter.getName() + " a perdu... ");
+			System.out.println(firstFighter.getName() + " remporte le combat ! ");
+		}
 	}
 	
 	/**

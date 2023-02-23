@@ -1,6 +1,6 @@
 package fr.WoW.model;
 
-public class Mage extends Personnage implements Berserker, Healer{
+public class Mage extends Personnage implements Berserker, Healer {
 	
 	// CONSTRUCTEURS
 	public Mage(String race, String name) {
