@@ -48,11 +48,11 @@ public class Game {
 		while (firstFighter.getHP() > 0 && secFighter.getHP() > 0) {
 			// si nombre de tours impair, le premier combattant joue
 			if (tour % 2 == 1) {
-				play(firstFighter);
+				play(firstFighter, secFighter);
 				
 			} else {
 				// sinon c'est le second combattant qui joue
-				play(secFighter);
+				play(secFighter, firstFighter);
 			}
 
 			
@@ -68,7 +68,7 @@ public class Game {
 		
 		switch (p.getClass().getSimpleName()) {
 		case "Guerrier" :
-			p.attack(adversaire, 300);
+			((Guerrier) p).attack(adversaire, 300);
 			break;
 		case "Mage":
 			
@@ -76,8 +76,7 @@ public class Game {
 		case "Soigneur":
 			
 			break;
-		}
-		
+		}	
 	}
 	
 
