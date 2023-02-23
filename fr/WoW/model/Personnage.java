@@ -1,10 +1,12 @@
 package fr.WoW.model;
 
 public abstract class Personnage {
-
+	
+	//ATTRIBUTS
 	private String race, name;
 	private int HP, MP;
 	
+	//CONSTRUCTEURS
 	public Personnage(String race, String name) {
 		this(race, name, 1000, 500);
 	}
@@ -16,6 +18,7 @@ public abstract class Personnage {
 		this.MP = mP;
 	}
 	
+	//GETTERS ET SETTERS
 	public String getRace() {
 		return this.race;
 	}

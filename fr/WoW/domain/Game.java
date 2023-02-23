@@ -1,7 +1,7 @@
 package fr.WoW.domain;
 
 import fr.WoW.model.*;
-import fr.WoW.utilitaire.Calcul;
+import fr.WoW.utilitaire.*;
 
 public class Game {
 
@@ -21,7 +21,9 @@ public class Game {
 		int idSecFighter = Calcul.chooseFighter(fighters.length);
 		
 		// TANT QUE COMBATTANT 2 = COMBATTANT 1, ON CHERCHE UN AUTRE COMBATTANT 2
-		while ( idFirstFighter == idSecFighter) {
+		while ((idFirstFighter == idSecFighter) || 
+				(fighters[idFirstFighter].getClass().getSimpleName() == "Soigneur" 
+				&& fighters[idSecFighter].getClass().getSimpleName() == "Soigneur")) {
 			idSecFighter = Calcul.chooseFighter(fighters.length);
 		}
 		
@@ -29,56 +31,12 @@ public class Game {
 		Personnage firstFighter = fighters[idFirstFighter];
 		Personnage secFighter = fighters[idSecFighter];
 		
-		//fight(firstFighter, secFighter);
+		Combat.fight(firstFighter, secFighter);
 		
-		System.out.println(firstFighter.getClass().getSimpleName());
-		System.out.println(firstFighter.getName());
+		
 	}
 		
-	/**
-	 * FONCTION COMBATS
-	 * @param firstFighter
-	 * @param secFighter
-	 */
-	public static void fight(Personnage firstFighter, Personnage secFighter) {
-	
 
-		// TANT QUE LES POINTS DE VIE DE CHAQUE COMBATTANT EST SUPÉRIEUR À 0
-		int tour = 1;
-		while (firstFighter.getHP() > 0 && secFighter.getHP() > 0) {
-			// si nombre de tours impair, le premier combattant joue
-			if (tour % 2 == 1) {
-				play(firstFighter, secFighter);
-				
-			} else {
-				// sinon c'est le second combattant qui joue
-				play(secFighter, firstFighter);
-			}
-
-			
-			
-			
-			
-			tour++;
-		}
-				
-	}
-	
-	public static void play(Personnage p, Personnage adversaire) {
-		
-		switch (p.getClass().getSimpleName()) {
-		case "Guerrier" :
-			((Guerrier) p).attack(adversaire, 300);
-			break;
-		case "Mage":
-			
-			break;
-		case "Soigneur":
-			
-			break;
-		}	
-	}
-	
 
 
 	
