@@ -1,6 +1,8 @@
 package fr.WoW.utilitaire;
 
 import fr.WoW.model.*;
+import fr.WoW.exception.*;
+
 
 public class Combat {
 
@@ -34,6 +36,7 @@ public class Combat {
 			
 			tour++;
 		}	
+		// FIN DU COMBAT
 		if (firstFighter.getHP() == 0) {
 			System.out.println(firstFighter.getName() + " a perdu... ");
 			System.out.println(secFighter.getName() + " remporte le combat ! ");
@@ -52,18 +55,30 @@ public class Combat {
 		
 		switch (p.getClass().getSimpleName()) {
 		case "Guerrier" :
-			((Guerrier) p).attack(adversaire, 300);
-			System.out.println("Le guerrier " + p.getName() + " attaque " + adversaire.getName() + ".");
+			try {
+				((Guerrier) p).attack(adversaire, 300);
+				System.out.println("Le guerrier " + p.getName() + " attaque " + adversaire.getName() + ".");
+			} catch(ZeroHPException e) {
+				System.out.println(e.getMessage());
+			}
 			break;
+			
 		case "Mage":
-			((Mage) p).attack(adversaire, 250);
+			try {
+				((Mage) p).attack(adversaire, 250);
+			} catch (ZeroHPException e) {
+				System.out.println(e.getMessage());
+			}
+			
 			((Mage) p).heal(150);
 			System.out.println("Le mage " + p.getName() + " attaque " + adversaire.getName() + " et se soigne.");
 			break;
+			
 		case "Soigneur":
 			((Soigneur) p).heal(200);
 			System.out.println("Le soigneur " + p.getName() + " se soigne.");
 			break;
+			
 		default:
 			break;
 		}	
